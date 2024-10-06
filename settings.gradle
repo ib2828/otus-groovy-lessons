@@ -1,2 +1,3 @@
 rootProject.name = 'otus-groovy-lessons'
+include 'hw01-gradle'
 

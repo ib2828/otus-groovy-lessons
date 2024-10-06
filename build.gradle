@@ -13,8 +13,19 @@ dependencies {
     implementation 'org.codehaus.groovy:groovy-all:3.0.19'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation("com.google.guava:guava:+")
 }
 
 test {
     useJUnitPlatform()
+}
+
+task examples {
+    description 'Builds all examples.'
+
+    dependsOn {
+        subprojects.findAll {
+            it.projectDir.parentFile.name == 'hw01-gradle'
+        }.assemble
+    }
 }
