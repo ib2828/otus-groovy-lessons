@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.johnrengelman:shadow:8.1.1"
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'java'
+    id ("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
+group = 'org.example'
+version = '2.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.19'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.google.guava:guava:33.3.0-jre'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "org.example.Main"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "org.example.Main"
+    }
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+}
